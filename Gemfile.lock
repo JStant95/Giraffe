@@ -11,11 +11,18 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    concurrent-ruby (1.1.6)
+    connection_pool (2.2.3)
     diff-lcs (1.4.4)
+    hamster (3.0.0)
+      concurrent-ruby (~> 1.0)
+    link_header (0.0.8)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    net-http-persistent (3.1.0)
+      connection_pool (~> 2.2)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     public_suffix (4.0.5)
@@ -24,6 +31,9 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rdf (3.1.4)
+      hamster (~> 3.0)
+      link_header (~> 0.0, >= 0.0.8)
     regexp_parser (1.7.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -44,6 +54,9 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
+    sparql-client (3.1.0)
+      net-http-persistent (~> 3.1)
+      rdf (~> 3.1)
     tilt (2.0.10)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -55,6 +68,7 @@ DEPENDENCIES
   capybara
   rspec
   sinatra
+  sparql-client
 
 BUNDLED WITH
    2.1.4
