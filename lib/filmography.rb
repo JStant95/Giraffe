@@ -10,10 +10,14 @@ class Filmography
       SELECT * WHERE {
         ?f rdf:type dbo:Film .
         ?f dbo:starring dbr:Macaulay_Culkin .
+        ?f rdfs:label ?film_title .
+        FILTER LANGMATCHES( LANG(?film_title), 'en')
       }"
     results = []
     sparql = SPARQL::Client.new("http://dbpedia.org/sparql")
-    sparql.query(query).each { |result| results.push(result) }
-    results
+    sparql.query(query).each { |result| results.push(result.film_title.to_s) }
+    films = { "films" => results }
+    p films
+    films
   end
 end

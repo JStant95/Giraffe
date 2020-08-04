@@ -1,8 +1,9 @@
 require 'sinatra/base'
+require './lib/filmography.rb'
 
 class FilmInfo < Sinatra::Base
   get '/' do
-    'Hello World'
+    Filmography.show.to_json
   end
 
   run! if app_file == $0
