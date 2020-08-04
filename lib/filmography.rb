@@ -2,14 +2,11 @@ require 'sparql/client'
 
 class Filmography
   def self.show(actor)
-    p actor
     query = create_query(actor)
     results = []
     sparql = SPARQL::Client.new("http://dbpedia.org/sparql")
     sparql.query(query).each { |result| results.push(result.film_title.to_s) }
     films = { "films" => results }
-    p films
-    films
   end
 
   def self.create_query(actor)
