@@ -13,12 +13,10 @@ describe Filmography do
     end
 
     it "Does not make new query if it has already been made" do
-      culkin_films = Filmography.show("Macaulay_Culkin")["films"]
-      film_double = class_double("Filmography")
+      Filmography.show("Macaulay_Culkin")
 
-      expect(Filmography.show("Macaulay_Culkin")["films"].first).to eq("Home Alone")
-      expect(film_double).to receive(:retrieve_films)
-      film_double.show("Macaulay_Culkin")
+      expect(Filmography).to receive(:retrieve_films)
+      Filmography.show("Macaulay_Culkin")
     end
   end
 end
