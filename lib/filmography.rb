@@ -3,10 +3,6 @@ require 'sparql/client'
 class Filmography
   @@queries = {}
 
-  class << self
-    attr_accessor :queries
-  end
-
   def self.show(actor)
     if @@queries.has_key?(actor)
       retrieve_films(actor)
@@ -16,7 +12,6 @@ class Filmography
   end
 
   def self.make_query(actor)
-    p "query"
     query = create_query(actor)
     results = []
     sparql = SPARQL::Client.new("http://dbpedia.org/sparql")
@@ -27,8 +22,6 @@ class Filmography
   end
 
   def self.retrieve_films(actor)
-    p "no query"
-    p @@queries 
     @@queries[actor]
   end
 
