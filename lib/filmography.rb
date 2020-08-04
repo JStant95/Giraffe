@@ -1,7 +1,8 @@
 require 'sparql/client'
 
 class Filmography
-  def self.show
+  def self.show(actor)
+    p actor
     query= "
     PREFIX dbo: <http://dbpedia.org/ontology/>
     PREFIX prop: <http://dbpedia.org/property/>
@@ -9,7 +10,7 @@ class Filmography
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       SELECT * WHERE {
         ?f rdf:type dbo:Film .
-        ?f dbo:starring dbr:Macaulay_Culkin .
+        ?f dbo:starring dbr:#{actor} .
         ?f rdfs:label ?film_title .
         FILTER LANGMATCHES( LANG(?film_title), 'en')
       }"
