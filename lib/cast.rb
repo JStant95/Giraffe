@@ -1,14 +1,28 @@
 require 'sparql/client'
 
 class Cast
+  @@queries = {}
+
   def self.show(film)
+    if @@queries.has_key?(film)
+      retrieve_cast(film)
+    else
+      make_query(film)
+    end
+  end
+
+  def self.make_query(film)
     query = create_query(film)
     results = []
     sparql = SPARQL::Client.new("http://dbpedia.org/sparql")
     sparql.query(query).each { |result| results.push(result.actorName.to_s) }
     cast = { "cast" => results }
-    # @@queries[film] = cast
+    @@queries[film] = cast
     cast
+  end
+
+  def self.retrieve_cast(film)
+    @@queries[film]
   end
 
   def self.create_query(film)
